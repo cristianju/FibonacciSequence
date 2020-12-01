@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class FibonacciSequence {
 
@@ -28,6 +29,7 @@ public class FibonacciSequence {
 			showFib(n);
 		}
 		
+		endProgram(s);
 		s.close();
 	}
 
@@ -54,10 +56,27 @@ public class FibonacciSequence {
 		int n = s.nextInt();
 		if (n <= 0) {
 			System.out.println();
-			System.out.println("nIt has to be greater than zero!");
+			System.out.println("\nIt has to be greater than zero!");
 			System.out.print("Re-type the number: ");
 			return readNum(s);
 		}
 		return n;
+	}
+	
+	public static void endProgram(Scanner s) {
+		System.out.println();
+		System.out.println("If you want to exit the program, pres q!");
+		String str = s.next();
+		if (!str.contentEquals("q")) {
+			endProgram(s);
+		}
+		System.out.println("Program terminated.");
+// delaying 5 seconds before closing the program
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
